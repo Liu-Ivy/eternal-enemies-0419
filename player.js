@@ -20,7 +20,7 @@ Player.prototype.draw = function() {
 Player.prototype.update = function(){
 
     this.y = this.y + this.direction * this.speed;
-    
+
 }
 
 Player.prototype.setDirection = function(newDirection){
@@ -28,5 +28,15 @@ Player.prototype.setDirection = function(newDirection){
 
 }
 Player.prototype.setLives = function(){
-    thi.lives --;
+    this.lives --;
 }
+
+Player.prototype.checkCollisionWithEnemy = function(enemy){
+    const collisionRight = this.x + this.size/2 > enemy.x - enemy.size /2;
+    const collisionLeft = this.x + this.size/2 < enemy.x + enemy.size/2;
+    const collisionTop = this.y - this.size/2 < enemy.y + enemy.size/2;
+    const collisionBottom = this.y + this.size/2 > enemy.y - enemy.size/2;
+
+    return collisionRight && collisionLeft && collisionTop && collisionBottom;
+
+};

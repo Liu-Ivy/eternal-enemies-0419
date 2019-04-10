@@ -38,6 +38,7 @@ function main(){
         canvasElement.setAttribute('height',height);
 
         const game = new Game(canvasElement);
+        game.setGamerOverCallback(buildGameOverScreen);
         game.startLoop();
 
         document.addEventListener('keydown',function(event){
@@ -56,7 +57,7 @@ function main(){
     }
     
     function buildGameOverScreen(){
-        const buildGameOverScreen = buildDom(`
+        const gameOverScreen = buildDom(`
          <section>
          <h1>Game</h1>
          <button class="restart-button">Restart</button>
