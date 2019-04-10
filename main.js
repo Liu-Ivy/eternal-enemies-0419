@@ -40,17 +40,29 @@ function main(){
         const game = new Game(canvasElement);
         game.startLoop();
 
-        setTimeout(buildGameOverScreen,3000);
+        document.addEventListener('keydown',function(event){
+            console.log(event.keyCode);
+            if(event.keyCode === 38){
+                game.player.setDirection(-1)
+            }else if(event.keyCode === 40){
+                game.player.setDirection(1)
+            }
+        }) 
+        document.addEventListener('keyup',function(event){
+            if(event.keyCode === 38 || event.keyCode === 40){
+                game.player.setDirection(0);
+            }
+        })       
     }
     
     function buildGameOverScreen(){
         const buildGameOverScreen = buildDom(`
          <section>
          <h1>Game</h1>
-         <button>Restart</button>
+         <button class="restart-button">Restart</button>
          </section>
         `)
-        const restartButton=document.querySelector('.reestart-button');
+        const restartButton=document.querySelector('.restart-button');
         restartButton.addEventListener('click',buildGameScreen);
     } 
     
